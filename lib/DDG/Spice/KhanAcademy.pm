@@ -11,10 +11,10 @@ spice to => join '&',
     'v=2',
     'q=$1';
 
-triggers query_lc => qr/^khan(\s+academy)?\s+(.*)/;
+triggers startend => "khan", "help", "tutorial", "khan academy";
 
 handle matches => sub {
-    return $2 if $2 and $2 ne 'academy';
+    return $_ unless !defined $_;
     return;   
 };
 
