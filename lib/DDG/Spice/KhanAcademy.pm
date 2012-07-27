@@ -13,7 +13,7 @@ spice to => join '&',
 
 triggers startend => "khan", "help", "tutorial", "khan academy";
 
-handle matches => sub {
+handle remainder => sub {
     return $_ unless !defined $_;
     return;   
 };
