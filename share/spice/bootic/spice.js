@@ -7,9 +7,9 @@ function ddg_spice_bootic( products )
 	/* constants */
 	var pic_width = 100;
 	var pic_height = 100;
+	var pic_size = '/' + pic_width + 'x' + pic_height + '/';
 	var server = 'http://www.bootic.com';
-	var pic_base_uri = 'http://static.bootic.com/_pictures/'
-		+ pic_width + 'x' + pic_height + '/';
+	var pic_base_uri = 'http://static.bootic.com/_pictures/';
 
 	var placeholder = d.createElement( 'div' );
 	var icon_parent = d.createElement( 'div' );
@@ -29,10 +29,10 @@ function ddg_spice_bootic( products )
 		YAHOO.util.Dom.addClass( link, 'bootic_name' );
 		link.href = server + item.url;
 
-		var pic = item.pictures[0].replace( /^.*?\//, '' );
+		var pic = item.pictures[0].split( '/' );
 		var img = d.createElement( 'img' );
 		YAHOO.util.Dom.addClass( img, 'bootic_picture' );
-		img.src = '/iu/?u=' + pic_base_uri + pic;
+		img.src = '/iu/?u=' + pic_base_uri + pic[0] + pic_size + pic[2];
 		img.width = pic_width;
 		img.height = pic_height;
 		img.alt = item.name;
@@ -50,7 +50,7 @@ function ddg_spice_bootic( products )
 
 	var query = '';
 	if ( products.input_query ) {
-		query = '?q=' + encodeURIComponent( products.input_query );
+		query = '?initial=1&q=' + encodeURIComponent( products.input_query );
 	}
 
 	var items = new Array();
